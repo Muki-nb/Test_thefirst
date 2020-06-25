@@ -1,0 +1,114 @@
+<html>
+<body>
+   <!--画板-->
+   <canvas id="canvas" style="background-color: black;">您当前的版本不支持       </canvas>
+
+   <script type="text/javascript">
+
+       // 拿到画板
+       var canvas = document.getElementById('canvas');
+       canvas.width = 1000;
+       canvas.height = 1000;
+
+       // 拿到上下文
+       var context = canvas.getContext('2d');
+       // 设置线条的颜色
+       context.strokeStyle = 'red';
+       // 设置线条的宽度
+       context.lineWidth = 3;
+	   
+		var INT = 2, num = 100, radrad = Math.PI/2, Irad = 1.5,times = 0,T = false;
+		const LINEIT = false,LINEITIT = true,numi = 50,poppop = true,WidthXY = 2,Pianyi = 0;
+		var ApointX,ApointY,IradT = 0.001;
+		console.log(Irad*2+" "+Irad*2%1);
+		if(Irad*2%1 == 0){
+			ApointX = new Array(2*Irad),ApointY = new Array(2*Irad);
+			
+			
+		}
+		var endpointX = 500,endpointY = 500;
+		const PINLV = 100;
+       // 绘制直线
+	   var OOO = self.setInterval("DRAW()",PINLV);
+	   function stop(){
+	   OOO = window.clearInterval(OOO);
+	   }
+	   function continueto(){
+	   OOO = self.setInterval("DRAW()",PINLV);
+	   }
+	   
+	   
+	   function DRAW(){
+	   INT = 2, num = 150, radrad = Math.PI/2,times = 0,T = false;
+	   endpointX = 500,endpointY = 500;
+	   if(Irad*2%1 == 0){
+			ApointX = new Array(2*Irad),ApointY = new Array(2*Irad);
+		}
+	   context.clearRect(0,0,canvas.width,canvas.height);
+	   for(var i = 0;i < num;i++){
+	   if(LINEITIT){
+	   context.beginPath();
+      // 起点
+       context.moveTo(endpointX-Pianyi*WidthXY*Math.sin(radrad), endpointY-Pianyi*WidthXY*Math.cos(radrad));
+      // 终点
+       context.lineTo(endpointX+WidthXY*(INT-Pianyi)*Math.sin(radrad), endpointY+WidthXY*(INT-Pianyi)*Math.cos(radrad));
+	   context.closePath();
+       context.stroke();
+	   }
+	   endpointX = endpointX+WidthXY*(INT-Pianyi)*Math.sin(radrad);
+	   endpointY = endpointY+WidthXY*(INT-Pianyi)*Math.cos(radrad);
+	   if(T && LINEIT){
+		context.beginPath();
+		context.moveTo(ApointX[times], ApointY[times]);
+		context.lineTo(endpointX, endpointY);
+		context.closePath();
+		context.stroke();
+	   }else if(times == 2*Irad - 1 && LINEIT){
+		T = true;
+	   }
+	   if(LINEIT){
+		ApointX[times] = endpointX;
+		ApointY[times] = endpointY;}
+	   times++;
+	   if(times%(2*Irad)==0) times = 0;
+	   radrad += Math.PI/Irad;
+       
+	   var OK = true;
+	   while(OK){
+			INT++;
+			OK = false;
+			for(var o = 2;o < INT;o++){
+				if(INT%o == 0){
+					OK = true;
+					break;
+				}
+			}
+	   }
+	   //console.log(INT+" "+endpointX+" "+endpointY);
+	   }
+	   if(poppop) Irad += IradT;
+       }
+    
+   // 绘制弧线
+   // context.beginPath();
+   /*
+   * params
+   * 圆心x坐标
+   * 圆心y坐标
+   * 半径
+   * 起始角度
+   * 结束角度
+   * 方向，true 逆时针   false 顺时针  默认false，不写表示false
+   * 
+    context.arc(200,200,100,0,Math.PI/2,false);
+    context.closePath();
+    context.stroke();
+
+    context.strokeStyle = 'red';
+    context.arc(200,200,100,0,Math.PI/2, true);
+    context.closePath();
+    context.stroke();*/
+   </script>
+
+</body>
+</html>
